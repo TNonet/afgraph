@@ -1,6 +1,7 @@
-from function_node import *
-from function_tree import *
+from ..function.node import *
+from ..function.tree import *
 import numpy as np
+
 
 def generate_tree(name='test'):
     p_branch = .2
@@ -76,7 +77,7 @@ def generate_tree(name='test'):
     return tree
 
 
-class FunctionGenerator():
+class FunctionGenerator:
     """Generator of FunctionTrees
 
     # Arguments:
@@ -116,3 +117,4 @@ class FunctionGenerator():
         Determine how many branch and infertile nodes
 
     """
+    pass

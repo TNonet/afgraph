@@ -104,5 +104,3 @@ class NodeNameError(Exception):
                                                           q=self.qualifier,
                                                           ty=self.node_type,
                                                           n=self.node_name)
-
-

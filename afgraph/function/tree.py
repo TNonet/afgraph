@@ -1,12 +1,12 @@
-from function_node import *
-from function_helper import name_maker
+from .node import *
+from .helper import name_maker
 from copy import deepcopy, copy
 from graphviz import Digraph
 from matplotlib import pyplot as plt
-from function_exceptions import *
+from .exceptions import *
 
 
-class FunctionTree(object):
+class FunctionTree:
     """
     A functional implementation of a graph
 
@@ -127,6 +127,8 @@ class FunctionTree(object):
         """
 
         :param node_name:
+        :param node_map:
+        :param tree_map:
         :return: list of nodes have node_name as a child:
         """
         temp_node_map, temp_tree_map = self.__get_maps(node_map=node_map, tree_map=tree_map)
@@ -262,8 +264,8 @@ class FunctionTree(object):
             graph = self.node_map[self.root.name].get_function('tf',
                                                                self.node_map,
                                                                self.tree_map,
-                                                               pass_info={'input':__input,
-                                                                          'dtype':__type})
+                                                               pass_info={'input': __input,
+                                                                          'dtype': __type})
             with tf.compat.v1.Session() as sess:
                 return sess.run(graph(x), feed_dict={__input: x})
 
@@ -301,7 +303,7 @@ class FunctionTree(object):
         f = self.get_numpy()
         y = f(rng)
 
-        plt.plot(rng,y)
+        plt.plot(rng, y)
         plt.show()
 
     def __add_node(self, node, node_map=None):
@@ -323,7 +325,7 @@ class FunctionTree(object):
     def __add_edge(self, parent_node_name, child_node_name, node_map=None, tree_map=None):
         """
         """
-        temp_node_map, temp_tree_map = self.__get_maps(node_map=node_map,tree_map=tree_map)
+        temp_node_map, temp_tree_map = self.__get_maps(node_map=node_map, tree_map=tree_map)
 
         if parent_node_name not in temp_node_map:
             raise NodeNameError(tree_name=self.name, p_node_name=parent_node_name)
@@ -410,7 +412,7 @@ class FunctionTree(object):
         if new_node_name in self.node_map:
             raise Exception('New node name already exists')
 
-        new_node = self.node_map[old_node_name].copy_node(new_name=new_name,prefix=prefix)
+        new_node = self.node_map[old_node_name].copy_node(new_name=new_name, prefix=prefix)
 
         self.replace_node(old_node_name, new_node)
 
@@ -486,7 +488,6 @@ class FunctionTree(object):
 
         self.tree_map = temp_tree_map
         self.node_map = temp_node_map
-
 
     def insert_tree(self, tree, parent_node_name, child_node_name=None,
                     append=False, new_name=None, prefix=None):

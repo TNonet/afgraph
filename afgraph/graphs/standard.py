@@ -1,5 +1,6 @@
-from function_tree import *
-from function_node import *
+from ..function.tree import *
+from ..function.node import *
+
 
 def ReLU():
     test_graph = FunctionTree('ReLU')
@@ -73,7 +74,7 @@ def Scaled_Sigmoid(a=1, b=1):
 def c_Scaled_Sigmoid(a=1, b=1):
 
     def f(x, _a=a, _b=b, _c_linear=c_linear, _c_Sigmoid=c_Sigmoid):
-        lin = _c_linear(m=_a,b=_b)
+        lin = _c_linear(m=_a, b=_b)
         sig = _c_Sigmoid()
         return lin(sig(x))
     return f
@@ -154,7 +155,7 @@ def test_3():
     sin_node = Sin('sin')
     square_node = Square('square')
     sqrt_node = Sqrt('sqrt')
-    test_graph.insert_node(cos_node, 'Output','x')
+    test_graph.insert_node(cos_node, 'Output', 'x')
     test_graph.insert_node(square_node, 'Output', 'cos')
     test_graph.insert_node(sqrt_node, 'Output', 'square')
     test_graph.insert_node(sin_node, 'Output', 'sqrt')

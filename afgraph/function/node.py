@@ -1,10 +1,10 @@
 import numpy as np
 from copy import deepcopy
-from function_helper import name_maker
+from .helper import name_maker
 import tensorflow as tf
 
 
-class FunctionNode(object):
+class FunctionNode:
 
     def __init__(self, name):
         self.name = name
@@ -53,7 +53,6 @@ class FunctionNode(object):
         COST = 'get_cost_format'
         CHILDREN = 'get_extended_children'
         PARENT = 'get_extended_parents'
-
 
         if f_format == 'latex_str':
             f = getattr(objct, LATEX_STR)
