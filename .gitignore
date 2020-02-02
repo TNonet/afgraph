@@ -7,6 +7,9 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/.gitignore
+.idea/afgraph.iml
+.idea/
 
 # Generated files
 .idea/**/contentModel.xml
@@ -195,4 +198,3 @@ dmypy.json
 .pyre/
 .DS_Store
 *.gv
-*.pdf

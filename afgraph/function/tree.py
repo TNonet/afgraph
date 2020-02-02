@@ -15,7 +15,7 @@ class FunctionTree:
     f(x) = g(h(x,y))
         Tree:
                 Output <- Operator(g) <- Operator(h) <- Input(x)
-                                                   \\__ Constant(y)
+                                                   \__ Constant(y)
                 depth = 2 
                 node_map = {'Output': OutputOperator),
                             'g': UniaryOperator,
@@ -271,7 +271,7 @@ class FunctionTree:
 
         return f
 
-    def get_graph(self):
+    def get_graph(self, name=None):
         #  Build Graphs!
         g = Digraph(self.name, filename=str(self.name) + '.gv')
         for p_node, c_node_list in self.tree_map.items():
@@ -280,7 +280,10 @@ class FunctionTree:
                 c_node_name = self.node_map[c_node].graph_name()
                 g.edge(c_node_name, p_node_name)
         g.attr(rankdir='LR')
-        g.view()
+        if name:
+            g.render(name)
+        else:
+            g.view()
 
     def get_plot(self, range_object=None, N=100):
         """
